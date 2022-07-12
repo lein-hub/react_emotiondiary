@@ -1,5 +1,5 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
+import React from "react";
+import { Link } from "react-router-dom";
 
 const RouteTest = () => {
   return (
@@ -12,9 +12,8 @@ const RouteTest = () => {
       <br />
       <Link to="/edit">EDIT</Link>
       <br />
-      
     </>
-  )
-}
+  );
+};
 
-export default RouteTest
+export default RouteTest;
