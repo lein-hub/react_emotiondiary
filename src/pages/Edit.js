@@ -10,6 +10,11 @@ function Edit() {
   const diaryList = useContext(DiaryStateContext);
 
   useEffect(() => {
+    const titleElement = document.getElementsByTagName("title")[0];
+    titleElement.innerText = `감정 일기장 - ${id}번 일기 수정`;
+  }, [id]);
+
+  useEffect(() => {
     if (diaryList.length > 0) {
       const diary = diaryList.find((e) => parseInt(e.id) === parseInt(id));
       // console.log(diary);
@@ -19,7 +24,7 @@ function Edit() {
         setOriginData(diary);
       }
     }
-  }, [id, diaryList]);
+  }, [id, diaryList, navigate]);
 
   return (
     <div>
