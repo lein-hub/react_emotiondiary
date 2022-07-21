@@ -7,7 +7,7 @@ const sortOptionList = [
   { value: "latest", text: "최신순" },
   { value: "oldest", text: "오래된순" },
 ];
-const ControlMenu = ({ value, onChange, optionList }) => {
+const ControlMenu = React.memo(({ value, onChange, optionList }) => {
   return (
     <select
       className="ControlMenu"
@@ -21,7 +21,7 @@ const ControlMenu = ({ value, onChange, optionList }) => {
       ))}
     </select>
   );
-};
+});
 
 const filterOptionList = [
   { value: "all", text: "전체" },
@@ -37,9 +37,9 @@ const DiaryList = ({ diaryList }) => {
   const getProcessedDiaryList = () => {
     let newDiaryList = [...diaryList];
     if (filter === "good") {
-      newDiaryList = newDiaryList.filter((e) => e.emotion >= 3);
-    } else if (filter === "bad") {
       newDiaryList = newDiaryList.filter((e) => e.emotion < 3);
+    } else if (filter === "bad") {
+      newDiaryList = newDiaryList.filter((e) => e.emotion >= 3);
     }
     if (sortType === "latest") {
       newDiaryList.sort((a, b) => b.date - a.date);
