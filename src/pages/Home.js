@@ -1,8 +1,9 @@
 import React, { useState, useContext, useEffect } from "react";
 import MyHeader from "./../components/MyHeader";
 import MyButton from "./../components/MyButton";
-import { DiaryStateContext } from "../App";
+import { DiaryDispatchContext, DiaryStateContext } from "../App";
 import DiaryList from "../components/DiaryList";
+import axios from "axios";
 
 function Home() {
   const diaryList = useContext(DiaryStateContext);
@@ -10,6 +11,19 @@ function Home() {
   const [data, setData] = useState([]);
   const [curDate, setCurDate] = useState(new Date());
   const headText = `${curDate.getFullYear()}년 ${curDate.getMonth() + 1}월`;
+  const { onInit } = useContext(DiaryDispatchContext);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/diary")
+      .then((res) => {
+        console.log(res);
+        onInit(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   useEffect(() => {
     const titleElement = document.getElementsByTagName("title")[0];

@@ -1,0 +1,5 @@
+{
+  "projects": {
+    "default": "lein-react-project"
+  }
+}
